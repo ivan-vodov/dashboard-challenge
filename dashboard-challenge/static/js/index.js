@@ -77,7 +77,12 @@ function optionChanged(newOption) {
       autosize: false,
       width: 350,
       height: 350,
-      title:'Largest 10 OTUs',
+      title: 'Largest 10 OTUs',
+      titlefont: {
+        family: 'Arial, sans-serif',
+        size: 18,
+        color: 'grey'
+      },
       margin: {
         l: 50,
         r: 50,
@@ -92,11 +97,12 @@ function optionChanged(newOption) {
     // derive an array of marker sizes for the scatter plot, logarithm allows to visualize both large and small values
     var marker_sizes = response[0].sample_values.slice(0);
     marker_sizes = marker_sizes.map(function (e) {
-      return Math.log(e * 2) * 10
+      return Math.log(e * 10) * Math.log(e * 10)
+
     });
 
 
-
+  
 
     // plot the scatter plot
     var trace = [{
@@ -108,9 +114,37 @@ function optionChanged(newOption) {
       marker: { size: marker_sizes, color: marker_colors }
     }];
 
+    var trace_layout = {
+      xaxis: {
+        autorange: true,
+        title: 'OTU ID',
+        titlefont: {
+          family: 'Arial, sans-serif',
+          size: 18,
+          color: 'grey'
+        },
+      },
+      yaxis: {
+        type: 'log',
+        autorange: true,
+        title: 'OTU Count (log scale)',
+        titlefont: {
+          family: 'Arial, sans-serif',
+          size: 18,
+          color: 'grey'
+        },
+        showticklabels: true,
+      },
+      margin: {
+        l: 50,
+        r: 50,
+        b: 150,
+        t: 0
+      }
+    };
 
     var $SCATTER = document.getElementById("scatter_chart");
-    Plotly.newPlot($SCATTER, trace);
+    Plotly.newPlot($SCATTER, trace, trace_layout);
   });
 }
 
