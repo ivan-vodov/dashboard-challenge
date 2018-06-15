@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Belly Button Biodiversity Dashboard</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.7.3/d3.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Belly Button Biodiversity Dashboard</h1>
+        <hr/>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-4 form-group">
+        <small>Choose a sample to load the data</small>
+        <select id="selDataset" class="custom-select" onchange="optionChanged(this.value)">
+          <option value="default" selected="selected">Select a sample</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card border-light mb-3">
+          <div class="card-header">Sample Metadata</div>
+          <div id="sampleMetadata" class="card-body small "></div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <center>
+          <div id="pie_chart">
+          </div>
+        </center>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="scatter_chart"></div>
+      </div>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+
+</html>
